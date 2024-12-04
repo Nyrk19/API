@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">  
+    <title>Mi cuenta</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/Actualizar/style.css">
+    <script src="http://127.0.0.1:8000/static/admin_Crear/script.js"></script>
+    <style>header{opacity: 0;}</style>
+</head>
+
+<body>
+  <header>
+    <img class="logoimg" src="http://127.0.0.1:8000/static/Login/Logo.png">
+    <span class="logo">Skillmap</span>
+    <nav>
+        <div id="navbar">
+            <a href="http://127.0.0.1:8000/Skillmap/Admin/Inicio">Inicio</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Admin/Dashboard">Mi cuenta</a>
+            <a href="#" id="cerrar_sesion">Cerrar sesión</a>
+        </div>
+    </nav>
+  </header>
+  <div class="custom-popup" id="customPopup" style="color: white">
+    <span class="popup-message" id="popupMessage"></span>
+  </div>
+  <div class="dashboard-container">
+    <div class="dashboard-main">
+      <div class="dashboard-section profile-info">
+        <h2>Datos del usuario</h2>
+        <label for="nombre">Nombre: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp</label>
+        <input type="text" id="nombre" required><br><br>
+        <label for="apellido">Apellido:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp</label>
+        <input type="text" id="apellido" required><br><br>
+        <label for="email">Correo: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</label>
+        <input type="email" id="email" required><br><br>
+        <label for="tipoUsuario">Tipo de Usuario: &nbsp &nbsp </label>
+        <select id="tipoUsuario" required>
+          <option value="usuario">Usuario Regular</option>
+          <option value="administrador">Administrador</option>
+        </select><br><br>
+        <label for="contrasena">Ingresa tu contraseña para el cambio:</label>
+        <input type="password" id="contrasena" required><br><br>
+        <p></p>
+        <div class="profile-actions">
+          <button id="crearUsuarioButton" class="cta-button" >Crear Usuario</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+      <p>
+          </i> <a href="mailto:skillmap2024@gmail.com"> skillmap2024@outlook.com</a><span style="margin-right: 100px;"></span>
+          </i> <a href="tel:5611670871"> 5611670871</a>
+          
+      </p>
+      <p>&copy; 2023 Skillmap. Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>

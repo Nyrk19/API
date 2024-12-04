@@ -1,0 +1,138 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-image: url('http://127.0.0.1:8000/static/LOGIN/fondo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.logo{
+  width: 230px;
+  height: 230px;
+  margin-left: 120px;
+  margin-top: 40px;
+}
+
+
+.login-container {
+  display: flex;
+  background-color: #273C75;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 520px;
+  width: 1000px;
+}
+
+.login-content, .login-form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-content {
+  background: #273C75; /* Fondo del lado izquierdo */
+  min-width: 200px; /* Ajusta según el diseño */
+
+}
+
+.login-form {
+  background: #38456a; /* Fondo del lado derecho */
+  min-width: 390px; /* Ajusta según el diseño */
+}
+
+h1, h2 {
+  margin: 0 0 20px 0;
+}
+
+p {
+  margin: 0 0 30px 0;
+}
+
+input[type="email"], input[type="password"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.remember-me input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.login-button, .video-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #50AF95; /* Color del botón */
+  cursor: pointer;
+}
+
+.login-button:hover, .video-button:hover {
+  background-color: #0056b3; /* Color del botón al pasar el cursor */
+}
+
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.custom-popup {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336; /* Color de fondo del pop-up */
+  color: white; /* Color del texto del pop-up */
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
+  display: none;
+}
+
+.popup-message {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@keyframes slideDown {
+  from {
+      top: -50px;
+  }
+  to {
+      top: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+      top: 0;
+  }
+  to {
+      top: -50px;
+  }
+}

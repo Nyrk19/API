@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">
+    <title>Test</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/Formulario_Kuder/styles.css">
+    <script src="http://127.0.0.1:8000/static/Formulario_Kuder/script.js"></script>
+    <style>
+      body{display: block;}
+      header{opacity: 0;}
+    </style>
+</head>
+<body>
+  <header>
+    <img class="logoimg" src="http://127.0.0.1:8000/static/Login/Logo.png">
+    <span class="logo">Skillmap</span>
+    <nav>
+        <div id="navbar">
+            <a href="http://127.0.0.1:8000/Skillmap/Inicio">Inicio</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Dashboard">Mi cuenta</a>
+            <a href="http://127.0.0.1:8000/Skillmap/AboutUs">Acerca de</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Contacto">Contacto</a>
+            <a href="#" id="cerrar_sesion">Cerrar sesión</a>
+        </div>
+    </nav>
+  </header>
+  <br>
+  <div class="centered-container">
+    <div class="form-container">
+        <form id="vocational-form">
+            <h1>Test De Orientación Vocacional Kudder</h1>
+            <label style="color:black">Apareceran una serie de actividades (3 por grupo) deberas elegir la que mas se adecue y la que menos se adecue a tu persona</label><br>
+            <div class="questions-container" id="questions-container">
+            </div>
+            <div class="custom-popup" id="customPopup" style="color: white">
+              <span class="popup-message" id="popupMessage"></span>
+            </div>  
+        </form>
+        <div class="button-container" id="buttonContainer">
+          <button type="button" id="enviarRespuestasPRE" style="opacity: 0;"></button> 
+          <button type="button" id="enviarRespuestas">Enviar Respuestas</button>    
+          <button type="button" id="enviarRespuestasPOS" style="opacity: 0;"></button>   
+          <button type="button" id="anterior" class="hidden">Anterior</button>
+          <button type="button" id="regresar" class="hidden">Regresar a seleccion</button>
+          <button type="button" id="siguiente" class="hidden">Siguiente</button>
+        </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br>
+  <footer>
+    <p>
+        </i> <a href="mailto:skillmap2024@gmail.com"> skillmap2024@outlook.com</a><span style="margin-right: 100px;"></span>
+        </i> <a href="tel:5611670871"> 5611670871</a>
+        
+    </p>
+    <p>&copy; 2023 Skillmap. Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,238 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #003840;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: left;
+  border-bottom: 2px solid darkgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-left: auto;
+}
+
+nav #navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 2px;
+  justify-content: flex-end;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav #navbar a:hover {
+  background-color: #005a68;
+}
+
+#hero {
+  background-color: #eee;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+#hero h1 {
+  color: #333;
+}
+
+#hero p {
+  color: #555;
+}
+
+.cta-button {
+  padding: 10px 30px;
+  background-color: #5cb85c;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+.service-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.service {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 20px;
+  flex-basis: 30%;
+  text-align: center;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  animation: entradas 1250ms linear 1 forwards;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.logoimg{
+  width: 100px; /* Puedes ajustar el ancho según tus necesidades */
+  height: auto
+}
+
+@media (max-width: 600px) {
+  .service-container {
+      flex-direction: column;
+  }
+
+  .service {
+      flex-basis: 100%;
+  }
+}
+
+.evaluaciones-container {
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+.evaluaciones-header {
+  background: #d3d3d3; /* Fondo cambiado a gris */
+  color: #333;
+  padding: 10px 20px;
+  text-align: center;
+}
+.evaluaciones-header h1 {
+  margin: 0;
+}
+.evaluaciones-nav {
+  background: #59645b; /* Fondo cambiado a verde */
+  color: #fff; /* Texto cambiado a blanco */
+  padding: 10px;
+  overflow: hidden;
+}
+.evaluaciones-nav ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center; /* Centrado para una mejor apariencia */
+}
+.evaluaciones-nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+.evaluaciones-nav a {
+  text-decoration: none;
+  color: #fff;
+}
+.evaluaciones-nav a:hover {
+  text-decoration: underline;
+}
+.evaluaciones-main {
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  margin-top: 15px;
+}
+.evaluaciones-section {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f4f4f4;
+  border: 1px solid #ccc;
+}
+.evaluaciones-section h2 {
+  border-bottom: 2px solid #28a745; /* Borde cambiado a verde */
+  color: #333;
+  padding-bottom: 5px;
+}
+.evaluaciones-section.chaside{
+  animation: entrada1 500ms linear 1 forwards;
+}
+.evaluaciones-section.kuder{
+  animation: entradas 750ms linear 1 forwards;
+}
+.evaluaciones-section.holland{
+  animation: entradas 1s linear 1 forwards;
+}
+.kuder div, .holand div, .chaside div {
+  margin-bottom: 10px;
+}
+
+.evaluaciones-description {
+  max-width: 60vw;
+  color:#13441eab;
+}
+
+.finish-actions {
+  text-align: center;
+  margin-left: 50vw;
+  animation: entradas 1s linear 1 forwards;
+}
+
+.evaluaciones-actions{
+  text-align: right;
+}
+.evaluaciones-actions a, .finish-actions a {
+  background: #28a745; /* Fondo cambiado a verde */
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.evaluaciones-actions a:hover, .finish-actions a:hover {
+  background: #0056b3; /* Un verde más claro para el hover */
+}
+
+@keyframes entrada1{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 100;
+  }
+}
+
+@keyframes entradas{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 100;
+  }
+}

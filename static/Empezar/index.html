@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">
+    <title>Empezar</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/Empezar/styles.css">
+    <script src="http://127.0.0.1:8000/static/Empezar/script.js"></script>
+    <style>header{opacity: 0;}</style>
+</head>
+<body>
+  <header>
+    <img class="logoimg" src="http://127.0.0.1:8000/static/Login/Logo.png">
+    <span class="logo">Skillmap</span>
+    <nav>
+        <div id="navbar">
+            <a href="http://127.0.0.1:8000/Skillmap/Inicio">Inicio</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Dashboard">Mi cuenta</a>
+            <a href="http://127.0.0.1:8000/Skillmap/AboutUs">Acerca de</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Contacto">Contacto</a>
+            <a href="#" id="cerrar_sesion">Cerrar sesión</a>
+        </div>
+    </nav>
+  </header>
+  <br><br>
+  <div class="centered-container">
+    <div class="options-container">
+        <h1>Elige una opción</h1>
+        <section class="options">
+          <div class="options-section">
+              <div class="options-member-test" onclick="redirigir('http://127.0.0.1:8000/Skillmap/Empezar/Evaluaciones')">
+                  <img src="http://127.0.0.1:8000/static/test.png" alt="Test" class="options-member-icon">
+                  <h3 class="options-member-name">Test</h3>
+                  <p class="options-member-title">Tomate tu tiempo respondiendo las preguntas</p>
+              </div>
+  
+              <div class="options-member-activities" onclick="redirigir2('http://127.0.0.1:8000/Skillmap/Empezar/Activity')">
+                  <img src="http://127.0.0.1:8000/static/activity.png" alt="Activity" class="options-member-icon">
+                  <h3 class="options-member-name">Actividades</h3>
+                  <p class="options-member-title">Resuelve las actividades y dinos que te parecieron</p>
+              </div>
+  
+              <div class="options-member-results" onclick="redirigir3('http://127.0.0.1:8000/Skillmap/Empezar/Resultados')">
+                  <img src="http://127.0.0.1:8000/static/result.png" alt="Results" class="options-member-icon">
+                  <h3 class="options-member-name">Resultados</h3>
+                  <p class="options-member-title">Conoce las carreras que te recomendamos</p>
+              </div>
+          </div>
+      </section>
+    </div>
+  </div>
+  <footer>
+    <p>
+        </i> <a href="mailto:skillmap2024@gmail.com"> skillmap2024@outlook.com</a><span style="margin-right: 100px;"></span>
+        </i> <a href="tel:5611670871"> 5611670871</a>
+        
+    </p>
+    <p>&copy; 2023 Skillmap. Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>

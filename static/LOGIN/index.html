@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">  
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/LOGIN/styles.css">
+</head>
+<body>
+    <script src="http://127.0.0.1:8000/static/LOGIN/script.js"></script>
+    <div class="login-container">
+        <div class="login-content">
+            <h1>Bienvenido a Skillmap</h1>
+            <p>Descubre tu potencial, traza tu futuro: Skillmap, tu brújula profesional</p>
+            <img class="logo" src="http://127.0.0.1:8000/static/LOGIN/Logo.png">
+        </div>
+        <div class="login-form">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <input type="email" id="correo" placeholder="Correo" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit" class="login-button">Acceder</button>
+                <div class="login-links">
+                    <a href="http://127.0.0.1:8000/Skillmap/Registro">Crear una cuenta</a>
+                    <a href="http://127.0.0.1:8000/Skillmap/RecuperarContraseña">Olvidaste tu contraseña?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="custom-popup" id="customPopup">
+        <span class="popup-message" id="popupMessage"></span>
+    </div>
+</body>
+</html>
