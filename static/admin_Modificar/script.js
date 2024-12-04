@@ -1,7 +1,7 @@
 let info;
 
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/admin/me', {
+    const response = await fetch('https://api-2y57.onrender.com/admin/me', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -10,7 +10,7 @@ async function verificarAutenticacion() {
 
     info = await response.json();
     if (!response.ok || info.error) {
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/Admin';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/Admin';
     } else {
         document.querySelector('header').style.opacity = 1;
         buscarUsuarios();
@@ -37,7 +37,7 @@ async function buscarUsuarios(event) {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/admin/findUsers?tipo=${tipo}&nombre=${name}&apellido=${surname}&correo=${email}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/admin/findUsers?tipo=${tipo}&nombre=${name}&apellido=${surname}&correo=${email}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -119,7 +119,7 @@ async function guardarCambios() {
 
     try {
         const endpoint = userType === 'Administrador' ? '/updateAdmins' : '/updateUsers';
-        const response = await fetch(`http://127.0.0.1:8000/admin${endpoint}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/admin${endpoint}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ async function guardarCambios() {
         } else {
             showCustomPopup(data.exito, 2000, "#12a14b");
             setTimeout(() => {
-                window.location.href = 'http://127.0.0.1:8000/Skillmap/Admin/Modificar';
+                window.location.href = 'https://api-2y57.onrender.com/Skillmap/Admin/Modificar';
             }, 1500);
         }
     } catch (error) {
@@ -163,7 +163,7 @@ async function eliminarUsuario() {
 
     try {
         const endpoint = userType === 'Administrador' ? '/deleteAdmins' : '/deleteUsers';
-        const response = await fetch(`http://127.0.0.1:8000/admin${endpoint}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/admin${endpoint}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -186,7 +186,7 @@ async function eliminarUsuario() {
         } else {
             showCustomPopup(data.exito, 2000, "#12a14b");
             setTimeout(() => {
-                window.location.href = 'http://127.0.0.1:8000/Skillmap/Admin/Modificar';
+                window.location.href = 'https://api-2y57.onrender.com/Skillmap/Admin/Modificar';
             }, 1500);
         }
     } catch (error) {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

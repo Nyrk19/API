@@ -10,7 +10,7 @@ const totalPaginas = 4;
 
 async function cargarPreguntas() {
 try {
-    const response = await fetch('http://127.0.0.1:8000/answersH/preguntas', {
+    const response = await fetch('https://api-2y57.onrender.com/answersH/preguntas', {
         method: 'GET'
     });
 
@@ -261,7 +261,7 @@ async function enviarFormulario() {
 if (verificarRespuestasPaginaActual()) {
     let formLleno = true
     try {
-    const response = await fetch(`http://127.0.0.1:8000/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
         method: 'GET',
         headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -277,7 +277,7 @@ if (verificarRespuestasPaginaActual()) {
     if (!formLleno){
         showCustomPopup("Completa el formulario antes de continuar",2000,"#ec5353")
     }else{
-        const response = await fetch(`http://127.0.0.1:8000/banda/svmTest`, {
+        const response = await fetch(`https://api-2y57.onrender.com/banda/svmTest`, {
             method: 'PUT',
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -291,7 +291,7 @@ if (verificarRespuestasPaginaActual()) {
         if (data.exito) {
             actualizarBaseDeDatos("formularioH", true)
             setTimeout(() => {
-                window.location.href = 'http://127.0.0.1:8000/Skillmap/Empezar/Evaluaciones';
+                window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar/Evaluaciones';
             }, 1000);
         }
     }
@@ -302,7 +302,7 @@ if (verificarRespuestasPaginaActual()) {
 }
 
 async function verificarAutenticacion() {
-const response = await fetch('http://127.0.0.1:8000/user/me', {
+const response = await fetch('https://api-2y57.onrender.com/user/me', {
     method: 'GET',
     headers: {
     'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -311,7 +311,7 @@ const response = await fetch('http://127.0.0.1:8000/user/me', {
 info = await response.json();
 data = info
 if (!response.ok || data.error) {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
 }else{
     document.querySelector('header').style.opacity = 1;
     verificarFormularioH();
@@ -322,7 +322,7 @@ if (!response.ok || data.error) {
 }
 async function cargarRespuestas() {
 try {
-    const response = await fetch(`http://127.0.0.1:8000/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function verificarFormularioH() {
 try {
-    const response = await fetch(`http://127.0.0.1:8000/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -380,7 +380,7 @@ try {
     botonEnviarPos.classList.add('hidden');
     botonAnterior.onclick = () => verificarFormularioH() && cambiarPagina(-1);
     botonSiguiente.onclick = () => verificarFormularioH() && cambiarPagina(1);
-    botonRegresar.onclick = () => window.location.href = 'http://127.0.0.1:8000/Skillmap/Empezar/Evaluaciones'; 
+    botonRegresar.onclick = () => window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar/Evaluaciones'; 
     botonAnterior.classList.remove('hidden');        
     botonSiguiente.classList.remove('hidden');       
     botonRegresar.classList.remove('hidden');
@@ -392,7 +392,7 @@ try {
 
 async function actualizarBaseDeDatos(parametro, valor) {
 correo = (info).correo
-const response = await fetch(`http://127.0.0.1:8000/answersH?correo=${encodeURIComponent(correo)}&parametro=${parametro}&valor=${valor}`,{
+const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(correo)}&parametro=${parametro}&valor=${valor}`,{
     method: 'PATCH',
     headers: {
         'Content-Type': 'application/json',

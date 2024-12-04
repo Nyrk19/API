@@ -24,7 +24,7 @@ function truncate(input){
 
 async function validar_usuario(codigo) {
     try {
-        const url = `http://127.0.0.1:8000/user/validar?code=${codigo}`;
+        const url = `https://api-2y57.onrender.com/user/validar?code=${codigo}`;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {
@@ -43,7 +43,7 @@ async function validar_usuario(codigo) {
         }else{
             showCustomPopup("Codigo validado",2000,"#12a14b")
             setTimeout(() => {
-                window.location.href = "http://127.0.0.1:8000/Skillmap";
+                window.location.href = "https://api-2y57.onrender.com/Skillmap";
             }, 1800);
         }
 

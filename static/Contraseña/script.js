@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 async function update_pass(correo) {
     try {
-        const url = `http://127.0.0.1:8000/user/contraseña?correo=${encodeURIComponent(correo)}`;
+        const url = `https://api-2y57.onrender.com/user/contraseña?correo=${encodeURIComponent(correo)}`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -35,7 +35,7 @@ async function update_pass(correo) {
         }else{
             showCustomPopup(data.exito,2000,"#12a14b")
             setTimeout(() => {
-                window.location.href = "http://127.0.0.1:8000/Skillmap";
+                window.location.href = "https://api-2y57.onrender.com/Skillmap";
             }, 1800);
         }
     } catch (error) {

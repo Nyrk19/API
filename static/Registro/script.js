@@ -1,5 +1,5 @@
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/user/me', {
+    const response = await fetch('https://api-2y57.onrender.com/user/me', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -9,7 +9,7 @@ async function verificarAutenticacion() {
     if (!response.ok || data.error) {
         //document.body.style.display = 'block';
     }else{
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/Inicio';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/Inicio';
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
@@ -118,7 +118,7 @@ async function registerUser() {
     
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/user', {
+        const response = await fetch('https://api-2y57.onrender.com/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ async function registerUser() {
             showCustomPopup(data.error,2000,"#ec5353")
         }else{
             try {
-                const response = await fetch('http://127.0.0.1:8000/answersC', {
+                const response = await fetch('https://api-2y57.onrender.com/answersC', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ async function registerUser() {
                     showCustomPopup(data.error,2000,"#ec5353")
                 }else{
                     try {
-                        const response = await fetch('http://127.0.0.1:8000/answersK', {
+                        const response = await fetch('https://api-2y57.onrender.com/answersK', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ async function registerUser() {
                             showCustomPopup(data.error,2000,"#ec5353")
                         }else{
                             try {
-                                const response = await fetch('http://127.0.0.1:8000/answersH', {
+                                const response = await fetch('https://api-2y57.onrender.com/answersH', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ async function registerUser() {
                                         status: false
                                     };
                                     
-                                    fetch("http://127.0.0.1:8000/banda", {
+                                    fetch("https://api-2y57.onrender.com/banda", {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -228,7 +228,7 @@ async function registerUser() {
 
 async function mail(correo) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/user/correo?correo=${encodeURIComponent(correo)}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/user/correo?correo=${encodeURIComponent(correo)}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -239,7 +239,7 @@ async function mail(correo) {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        window.location.href = "http://127.0.0.1:8000/Skillmap/Autenticar";
+        window.location.href = "https://api-2y57.onrender.com/Skillmap/Autenticar";
 
     } catch (error) {
         console.error('Error during registration:', error);

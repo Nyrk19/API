@@ -3,7 +3,7 @@ let ultimaRespuesta = 0;
 let nombreCompleto = "";
 
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/user/me', {
+    const response = await fetch('https://api-2y57.onrender.com/user/me', {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -11,7 +11,7 @@ async function verificarAutenticacion() {
     });
     const data = await response.json();
     if (!response.ok || data.error) {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
     } else {
     document.querySelector('header').style.opacity = 1;
     const messageContainer = document.createElement('div');
@@ -23,7 +23,7 @@ async function verificarAutenticacion() {
                         "1. Acerca de Skillmap<br>" +
                         "2. Acerca de los desarrolladores<br>" +
                         "3. Acerca de mis resultados";
-        messageContainer.innerHTML = '<div class="avatar-container"><img src="http://127.0.0.1:8000/static/Login/logo.png" class="avatar"></div><div class="message-content">' + mensaje + '</div>';
+        messageContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Login/logo.png" class="avatar"></div><div class="message-content">' + mensaje + '</div>';
         document.getElementById('conversation').appendChild(messageContainer);
     }
 
@@ -164,19 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = parseInt(document.getElementById('message').value);
             const messageContainer = document.createElement('div');
             messageContainer.classList.add('message', 'user');
-            messageContainer.innerHTML = '<div class="message-content">' + message + '</div><div class="avatar-container"><img src="http://127.0.0.1:8000/static/Contacto/user.png" class="avatar"></div>';
+            messageContainer.innerHTML = '<div class="message-content">' + message + '</div><div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Contacto/user.png" class="avatar"></div>';
             document.getElementById('conversation').appendChild(messageContainer);
             document.getElementById('message').value = '';
             ultimaPregunta = message;
             const thinkingContainer = document.createElement('div');
             thinkingContainer.classList.add('message', 'bot');
             scrollToBottom();
-            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="http://127.0.0.1:8000/static/Login/logo.png" class="avatar"></div><div class="message-content"><span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span></div>';
+            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Login/logo.png" class="avatar"></div><div class="message-content"><span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span></div>';
             document.getElementById('conversation').appendChild(thinkingContainer);
             scrollToBottom();
             const botResponse = await respuesta(ultimaPregunta, ultimaRespuesta);
             setTimeout(() => {
-            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="http://127.0.0.1:8000/static/Login/logo.png" class="avatar"></div><div class="message-content">' + botResponse + '</div>';
+            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Login/logo.png" class="avatar"></div><div class="message-content">' + botResponse + '</div>';
             }, 1000);
             scrollToBottom();
         });
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

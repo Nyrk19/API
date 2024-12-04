@@ -3,7 +3,7 @@ async function verificarAutenticacion() {
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const correo = document.getElementById('email');
-const response = await fetch('http://127.0.0.1:8000/user/me', {
+const response = await fetch('https://api-2y57.onrender.com/user/me', {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -12,7 +12,7 @@ const response = await fetch('http://127.0.0.1:8000/user/me', {
 info = await response.json();
 data = info
 if (!response.ok || data.error) {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
 }else{
     document.querySelector('header').style.opacity = 1;
     const nombretxt = info.name
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             password: contrasena
         };
         try {
-            const response = await fetch(`http://127.0.0.1:8000/user/update`, {
+            const response = await fetch(`https://api-2y57.onrender.com/user/update`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showCustomPopup(data.exito,2000,"#12a14b")
             if (correo != info.correo) {
                 try {
-                const response = await fetch(`http://127.0.0.1:8000/answersC/updateCorreo`, {
+                const response = await fetch(`https://api-2y57.onrender.com/answersC/updateCorreo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error during registration:', error);
                 }
                 try {
-                const response = await fetch(`http://127.0.0.1:8000/answersK/updateCorreo`, {
+                const response = await fetch(`https://api-2y57.onrender.com/answersK/updateCorreo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error during registration:', error);
                 }
                 try {
-                const response = await fetch(`http://127.0.0.1:8000/answersH/updateCorreo`, {
+                const response = await fetch(`https://api-2y57.onrender.com/answersH/updateCorreo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             setTimeout(() => {
-                window.location.href = 'http://127.0.0.1:8000/Skillmap/Dashboard';
+                window.location.href = 'https://api-2y57.onrender.com/Skillmap/Dashboard';
             }, 1500);
             }
         } catch (error) {
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

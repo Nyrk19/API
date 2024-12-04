@@ -1,5 +1,5 @@
 async function verificarAutenticacion() {
-const response = await fetch('http://127.0.0.1:8000/admin/me', {
+const response = await fetch('https://api-2y57.onrender.com/admin/me', {
     method: 'GET',
     headers: {
     'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -7,7 +7,7 @@ const response = await fetch('http://127.0.0.1:8000/admin/me', {
 });
 const data = await response.json();
 if (!response.ok || data.error) {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/Admin';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/Admin';
 }else{
     document.querySelector('header').style.opacity = 1;
 }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

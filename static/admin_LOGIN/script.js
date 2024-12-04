@@ -1,5 +1,5 @@
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/admin/me', {
+    const response = await fetch('https://api-2y57.onrender.com/admin/me', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -9,7 +9,7 @@ async function verificarAutenticacion() {
     if (!response.ok || data.error) {
         //document.body.style.display = 'block';
     }else{
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/Admin/Inicio';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/Admin/Inicio';
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +34,7 @@ async function login() {
     formData.append('password', password);
     
     try {
-        const response = await fetch('http://127.0.0.1:8000/admin/login', {
+        const response = await fetch('https://api-2y57.onrender.com/admin/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -53,7 +53,7 @@ async function login() {
             
             if (data.error === "Usuario no autenticado") {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/admin/codigoValido?correo=${encodeURIComponent(correo)}`, {
+                    const response = await fetch(`https://api-2y57.onrender.com/admin/codigoValido?correo=${encodeURIComponent(correo)}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ async function login() {
                     if (data.error) {
                         console.log("Codigo expirado");
                         try {
-                            const response = await fetch(`http://127.0.0.1:8000/admin/correo?correo=${encodeURIComponent(correo)}`, {
+                            const response = await fetch(`https://api-2y57.onrender.com/admin/correo?correo=${encodeURIComponent(correo)}`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -81,14 +81,14 @@ async function login() {
                                 throw new Error(`HTTP error! Status: ${response.status}`);
                             }
                             console.log('Correo enviado');
-                            window.location.href = "http://127.0.0.1:8000/Skillmap/Admin/Autenticar";
+                            window.location.href = "https://api-2y57.onrender.com/Skillmap/Admin/Autenticar";
 
                         } catch (error) {
                             console.error('Error during registration:', error);
                         }
                     }else {
                         console.log("Codigo activo")
-                        window.location.href = "http://127.0.0.1:8000/Skillmap/Admin/Autenticar";
+                        window.location.href = "https://api-2y57.onrender.com/Skillmap/Admin/Autenticar";
                     }
                 } catch (error) {
                     console.error('Error during validation:', error);
@@ -97,7 +97,7 @@ async function login() {
         } else {
             setTimeout(() => {
                 localStorage.setItem('access_token', data.access_token);
-                window.location.href = "http://127.0.0.1:8000/Skillmap/Admin/Inicio";
+                window.location.href = "https://api-2y57.onrender.com/Skillmap/Admin/Inicio";
             }, 1000);
         }
     } catch (error) {

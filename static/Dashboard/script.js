@@ -1,5 +1,5 @@
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/user/me', {
+    const response = await fetch('https://api-2y57.onrender.com/user/me', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -7,7 +7,7 @@ async function verificarAutenticacion() {
     });
     let data = await response.json();
     if (!response.ok || data.error) {
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
     }else{
         const nombre = document.getElementById('nombre');
         const correo = document.getElementById('email');
@@ -18,7 +18,7 @@ async function verificarAutenticacion() {
         nombre.textContent = nombretxt
         correo.textContent = correotxt
 
-        const response = await fetch(`http://127.0.0.1:8000/resultados/info?correo=${encodeURIComponent(data.correo)}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/resultados/info?correo=${encodeURIComponent(data.correo)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

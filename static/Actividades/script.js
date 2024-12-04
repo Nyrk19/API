@@ -1,6 +1,6 @@
 let respuestasUsuarioH, respuestasUsuarioC, respuestasUsuarioK, horaExacta, info, estado;
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/user/me', {
+    const response = await fetch('https://api-2y57.onrender.com/user/me', {
         method: 'GET',
         headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -9,14 +9,14 @@ async function verificarAutenticacion() {
     info = await response.json();
     data = info
     if (!response.ok || data.error) {
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
     }else{
         document.querySelector('header').style.opacity = 1;
         let chaside = true;
         let kuder = true;
         let holland = true;
         try {
-        const response = await fetch(`http://127.0.0.1:8000/answersC?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersC?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
             method: 'GET',
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -28,7 +28,7 @@ async function verificarAutenticacion() {
         console.error('Error al cargar respuestas: ', error.message);
         }
         try {
-        const response = await fetch(`http://127.0.0.1:8000/answersK?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersK?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
             method: 'GET',
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -40,7 +40,7 @@ async function verificarAutenticacion() {
         console.error('Error al cargar respuestas: ', error.message);
         }
         try {
-        const response = await fetch(`http://127.0.0.1:8000/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
             method: 'GET',
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -52,10 +52,10 @@ async function verificarAutenticacion() {
         console.error('Error al cargar respuestas: ', error.message);
         }
         if (!chaside || !kuder || !holland){
-            window.location.href = "http://127.0.0.1:8000/Skillmap/Empezar";
+            window.location.href = "https://api-2y57.onrender.com/Skillmap/Empezar";
         } else {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/resultados/calculos/?correo=${encodeURIComponent(info.correo)}`, {
+                const response = await fetch(`https://api-2y57.onrender.com/resultados/calculos/?correo=${encodeURIComponent(info.correo)}`, {
                     method: 'GET',
                     headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -1051,7 +1051,7 @@ async function crearBson (resC, resH, resK) {
         Actividad: false
     };
     try {
-        const response = await fetch('http://127.0.0.1:8000/resultados', {
+        const response = await fetch('https://api-2y57.onrender.com/resultados', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1071,7 +1071,7 @@ async function crearBson (resC, resH, resK) {
 
 async function cargarVideo () {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/resultados/video?correo=${encodeURIComponent((info).correo)}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/resultados/video?correo=${encodeURIComponent((info).correo)}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -1093,7 +1093,7 @@ async function cargarVideo () {
                 botonRegresar.classList.remove('hidden');
                 botonRegresar.classList.add('enviar');
             }
-            const videoUrl = `http://127.0.0.1:8000/static/Videos/${data.exito}`;
+            const videoUrl = `https://api-2y57.onrender.com/static/Videos/${data.exito}`;
             const videoElement = document.querySelector('video');
             videoElement.src = videoUrl;
             if (!estado){
@@ -1125,7 +1125,7 @@ async function terminarActividad() {
     try {
         abrirEmergente("Se estan procesando sus datos, no cierre esta ventana")
         let correo = info.correo
-        const response = await fetch(`http://127.0.0.1:8000/resultados/?correo=${encodeURIComponent(correo)}`, {
+        const response = await fetch(`https://api-2y57.onrender.com/resultados/?correo=${encodeURIComponent(correo)}`, {
             method: 'PUT',
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -1133,7 +1133,7 @@ async function terminarActividad() {
         });
         data = await response.json();
         if (data.exito) {
-            const response = await fetch(`http://127.0.0.1:8000/banda/svmVideo`, {
+            const response = await fetch(`https://api-2y57.onrender.com/banda/svmVideo`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
@@ -1147,7 +1147,7 @@ async function terminarActividad() {
             data = await response.json();
             if (data.exito) {
                 ocultarEmergente();
-                window.location.href = 'http://127.0.0.1:8000/Skillmap/Empezar';
+                window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar';
             }
             
         }
@@ -1158,7 +1158,7 @@ async function terminarActividad() {
 }
 
 function regresar() {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/Empezar';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar';
 }
 
 
@@ -1195,7 +1195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

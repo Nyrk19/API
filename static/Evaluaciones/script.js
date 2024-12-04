@@ -1,5 +1,5 @@
 async function verificarAutenticacion() {
-const response = await fetch('http://127.0.0.1:8000/user/me', {
+const response = await fetch('https://api-2y57.onrender.com/user/me', {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -7,14 +7,14 @@ const response = await fetch('http://127.0.0.1:8000/user/me', {
 });
 const data = await response.json();
 if (!response.ok || data.error) {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
 }else{
     document.querySelector('header').style.opacity = 1;
     let respuestasCUsuario;
     let respuestasHUsuario;
     let respuestasKUsuario;
     try {
-        const response = await fetch(`http://127.0.0.1:8000/answersC?correo=${encodeURIComponent(data.correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersC?correo=${encodeURIComponent(data.correo)}&formulario=false`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -25,7 +25,7 @@ if (!response.ok || data.error) {
         console.error('Error al cargar respuestas:', error.message);
     }
     try {
-        const response = await fetch(`http://127.0.0.1:8000/answersK?correo=${encodeURIComponent(data.correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersK?correo=${encodeURIComponent(data.correo)}&formulario=false`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -36,7 +36,7 @@ if (!response.ok || data.error) {
         console.error('Error al cargar respuestas:', error.message);
     }
     try {
-        const response = await fetch(`http://127.0.0.1:8000/answersH?correo=${encodeURIComponent(data.correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(data.correo)}&formulario=false`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

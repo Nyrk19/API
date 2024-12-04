@@ -1,7 +1,4 @@
-import smtplib
 import random
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from fastapi import APIRouter, Depends
 from fastapi import Request
 from passlib.context import CryptContext

@@ -3,7 +3,7 @@ async function verificarAutenticacion() {
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const correo = document.getElementById('email');
-const response = await fetch('http://127.0.0.1:8000/admin/me', {
+const response = await fetch('https://api-2y57.onrender.com/admin/me', {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -12,7 +12,7 @@ const response = await fetch('http://127.0.0.1:8000/admin/me', {
 info = await response.json();
 data = info
 if (!response.ok || data.error) {
-    window.location.href = 'http://127.0.0.1:8000/Skillmap/Admin';
+    window.location.href = 'https://api-2y57.onrender.com/Skillmap/Admin';
 }else{
     document.querySelector('header').style.opacity = 1;
 }
@@ -78,7 +78,7 @@ async function enviar(){
     };
     if(tipo === "usuario"){
         try {
-            const response = await fetch(`http://127.0.0.1:8000/admin/createUser`, {
+            const response = await fetch(`https://api-2y57.onrender.com/admin/createUser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ async function enviar(){
             showCustomPopup(data.error,2000,"#ec5353")
         }else{
             try {
-                const response = await fetch('http://127.0.0.1:8000/answersC', {
+                const response = await fetch('https://api-2y57.onrender.com/answersC', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ async function enviar(){
                     showCustomPopup(data.error,2000,"#ec5353")
                 }else{
                     try {
-                        const response = await fetch('http://127.0.0.1:8000/answersK', {
+                        const response = await fetch('https://api-2y57.onrender.com/answersK', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ async function enviar(){
                             showCustomPopup(data.error,2000,"#ec5353")
                         }else{
                             try {
-                                const response = await fetch('http://127.0.0.1:8000/answersH', {
+                                const response = await fetch('https://api-2y57.onrender.com/answersH', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ async function enviar(){
                                         status: false
                                     };
                                     
-                                    fetch("http://127.0.0.1:8000/banda", {
+                                    fetch("https://api-2y57.onrender.com/banda", {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -171,7 +171,7 @@ async function enviar(){
                                     }else {                                   
                                         showCustomPopup("Usuario creado",2000,"#12a14b")
                                         setTimeout(function() {
-                                            window.location.href = "http://127.0.0.1:8000/Skillmap/Admin/Inicio";
+                                            window.location.href = "https://api-2y57.onrender.com/Skillmap/Admin/Inicio";
                                         }, 4000);
                                     }
                                 }
@@ -193,7 +193,7 @@ async function enviar(){
         }
     }else {
         try {
-        const response = await fetch('http://127.0.0.1:8000/admin/createAdmin', {
+        const response = await fetch('https://api-2y57.onrender.com/admin/createAdmin', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -215,7 +215,7 @@ async function enviar(){
         }else{
             showCustomPopup("Usuario creado",2000,"#12a14b");
             setTimeout(function() {
-                window.location.href = "http://127.0.0.1:8000/Skillmap/Admin/Inicio";
+                window.location.href = "https://api-2y57.onrender.com/Skillmap/Admin/Inicio";
             }, 4000);
         }
         }catch (error) {
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');

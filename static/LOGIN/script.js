@@ -1,5 +1,5 @@
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/user/me', {
+    const response = await fetch('https://api-2y57.onrender.com/user/me', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -8,7 +8,7 @@ async function verificarAutenticacion() {
     const data = await response.json();
     if (!response.ok || data.error) {
     } else {
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/Inicio';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/Inicio';
     }
 }
 
@@ -36,7 +36,7 @@ async function login() {
     formData.append('password', password);
     
     try {
-        const response = await fetch('http://127.0.0.1:8000/user/login', {
+        const response = await fetch('https://api-2y57.onrender.com/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -55,7 +55,7 @@ async function login() {
             
             if (data.error === "Usuario no autenticado") {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/user/codigoValido?correo=${encodeURIComponent(correo)}`, {
+                    const response = await fetch(`https://api-2y57.onrender.com/user/codigoValido?correo=${encodeURIComponent(correo)}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ async function login() {
                     if (data.error) {
                         console.log("Codigo expirado");
                         try {
-                            const response = await fetch(`http://127.0.0.1:8000/user/correo?correo=${encodeURIComponent(correo)}`, {
+                            const response = await fetch(`https://api-2y57.onrender.com/user/correo?correo=${encodeURIComponent(correo)}`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -83,14 +83,14 @@ async function login() {
                                 throw new Error(`HTTP error! Status: ${response.status}`);
                             }
                             console.log('Correo enviado');
-                            window.location.href = "http://127.0.0.1:8000/Skillmap/Autenticar";
+                            window.location.href = "https://api-2y57.onrender.com/Skillmap/Autenticar";
 
                         } catch (error) {
                             console.error('Error during registration:', error);
                         }
                     }else {
                         console.log("Codigo activo")
-                        window.location.href = "http://127.0.0.1:8000/Skillmap/Autenticar";
+                        window.location.href = "https://api-2y57.onrender.com/Skillmap/Autenticar";
                     }
                 } catch (error) {
                     console.error('Error during validation:', error);
@@ -99,7 +99,7 @@ async function login() {
         } else {
             setTimeout(() => {
                 localStorage.setItem('access_token', data.access_token);
-                window.location.href = "http://127.0.0.1:8000/Skillmap/Inicio";
+                window.location.href = "https://api-2y57.onrender.com/Skillmap/Inicio";
             }, 1000);
         }
     } catch (error) {

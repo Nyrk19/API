@@ -1,6 +1,6 @@
 let info;
 async function verificarAutenticacion() {
-    const response = await fetch('http://127.0.0.1:8000/user/me', {
+    const response = await fetch('https://api-2y57.onrender.com/user/me', {
         method: 'GET',
         headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -10,11 +10,11 @@ async function verificarAutenticacion() {
     user = info.id
     data = info
     if (!response.ok || data.error) {
-        window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+        window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
     }else{
         document.querySelector('header').style.opacity = 1;
         try {
-            const response = await fetch(`http://127.0.0.1:8000/resultados/info?correo=${encodeURIComponent(info.correo)}`, {
+            const response = await fetch(`https://api-2y57.onrender.com/resultados/info?correo=${encodeURIComponent(info.correo)}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ async function verificarAutenticacion() {
                             "resultado": `${data.descripciones[0].descripcion}<br><br>${data.descripciones[1].descripcion}`,
                         };
                     }
-                    img.src = `http://127.0.0.1:8000/static/Imagenes_Resultados/${imageName}${user}.png`;
+                    img.src = `https://api-2y57.onrender.com/static/Imagenes_Resultados/${imageName}${user}.png`;
                     img.alt = `Imagen ${imageName}`;
                     img.style.width = '65%';
                     td.appendChild(img);
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener('click', function() {
             localStorage.removeItem('access_token');
-            window.location.href = 'http://127.0.0.1:8000/Skillmap/';
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/';
         });
     } else {
         console.error('El botón con id "cerrar_sesion" no se encontró.');
