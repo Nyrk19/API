@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">  
+    <title>Activar cuenta</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/Autenticacion/styles.css">
+    <script src="http://127.0.0.1:8000/static/admin_Autenticacion/script.js"></script>
+</head>
+<body>
+    <div class="activate-account-container">
+        <h2>Activa tu cuenta</h2>
+        <p>Introduce aquí tu código de verificación.</p>
+        <form id="verify">
+            <input type="code" id="codigo" placeholder="00000" required oninput="truncate(this)"><br><br>
+            <button type="submit" class="activate-account-button">Confirmar código</button>
+        </form>
+    </div>
+    <div class="custom-popup" id="customPopup">
+        <span class="popup-message" id="popupMessage"></span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">  
+    <title>Mi cuenta</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/Actualizar/style.css">
+    <script src="http://127.0.0.1:8000/static/Actualizar/script.js"></script>
+    <style>header{opacity: 0;}</style>
+</head>
+
+<body>
+  <header>
+    <img class="logoimg" src="http://127.0.0.1:8000/static/Login/Logo.png">
+    <span class="logo">Skillmap</span>
+    <nav>
+        <div id="navbar">
+            <a href="http://127.0.0.1:8000/Skillmap/Inicio">Inicio</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Dashboard">Mi cuenta</a>
+            <a href="http://127.0.0.1:8000/Skillmap/AboutUs">Acerca de</a>
+            <a href="http://127.0.0.1:8000/Skillmap/Contacto">Contacto</a>
+            <a href="#" id="cerrar_sesion">Cerrar sesión</a>
+        </div>
+    </nav>
+  </header>
+  <div class="custom-popup" id="customPopup" style="color: white">
+    <span class="popup-message" id="popupMessage"></span>
+  </div>
+  <div class="dashboard-container">
+    <div class="dashboard-main">
+      <div class="dashboard-section profile-info">
+        <h2>Información de Perfil</h2>
+        <label for="nombre">*Nombre: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp</label>
+        <input type="text" id="nombre" required><br><br>
+        <label for="apellido">*Apellido:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp</label>
+        <input type="text" id="apellido" required><br><br>
+        <label for="email">*Correo: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</label>
+        <input type="email" id="email" required><br><br>
+        <label for="password">*Contraseña: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</label>
+        <input type="password" id="password" required><br><br>
+        <label for="newPassword">&nbspNueva Contraseña:</label>
+        <input type="password" id="newPassword" required><br><br>
+        <p></p>
+        <div class="profile-actions">
+          <button id="guardarCambiosButton" class="cta-button" >Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+    <div id = indicacion1 style="font-size: 11px">*Valores obligatorios.</div>
+    <div id = indicacion2 style="font-size: 11px">&nbspSi desea cambiar la contraseña rellene el campo "Nueva contraseña"</div>
+  </div>
+  <footer>
+      <p>
+          </i> <a href="mailto:skillmap2024@gmail.com"> skillmap2024@outlook.com</a><span style="margin-right: 100px;"></span>
+          </i> <a href="tel:5611670871"> 5611670871</a>
+          
+      </p>
+      <p>&copy; 2023 Skillmap. Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>

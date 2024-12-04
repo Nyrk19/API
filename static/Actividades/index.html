@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/static/Logo.ico">  
+    <title>Mi cuenta</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/Actividades/styles.css">
+    <script src="http://127.0.0.1:8000/static/Actividades/script.js"></script>
+    <style>header{opacity: 0;}</style>
+</head>
+
+<body>
+    <header>
+        <img class="logoimg" src="http://127.0.0.1:8000/static/Login/Logo.png">
+        <span class="logo">Skillmap</span>
+        <nav>
+            <div id="navbar">
+                <a href="http://127.0.0.1:8000/Skillmap/Inicio">Inicio</a>
+                <a href="http://127.0.0.1:8000/Skillmap/Dashboard">Mi cuenta</a>
+                <a href="http://127.0.0.1:8000/Skillmap/AboutUs">Acerca de</a>
+                <a href="http://127.0.0.1:8000/Skillmap/Contacto">Contacto</a>
+                <a href="#" id="cerrar_sesion">Cerrar sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="miEmergente" class="emergente">
+        <div class="emergente-contenido">
+            <h3 id="Mensaje"></h3>
+            <p><span id=""></span></p>
+            <div id="spinner" class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="activity1">
+        <section id="hero">
+            <h1>Actividad</h1>
+            <b><p>Visualiza el siguiente video</p></b>
+            <video id="videoPlayer" width="854" height="480" controls controlsList="    nodownload noremoteplayback noplaybackrate noskipbackward">
+                <source src="" type="video/mp4">
+            </video>
+        </section>
+        <button id="finalizarBtn" class="hidden" onclick="terminarActividad()">Finalizar</button>
+        <button id="regresar" class="hidden" onclick="regresar()">Regresar</button>
+    </div>
+    <footer>
+        <p>
+            </i> <a href="mailto:skillmap2024@gmail.com"> skillmap2024@outlook.com</a><span style="margin-right: 100px;"></span>
+            </i> <a href="tel:5611670871"> 5611670871</a>
+            
+        </p>
+        <p>&copy; 2023 Skillmap. Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
