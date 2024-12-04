@@ -6,7 +6,7 @@ body {
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: url('http://127.0.0.1:8000/static/LOGIN/fondo.gif');
+  background-image: url('https://api-2y57.onrender.com/static/LOGIN/fondo.gif');
   animation: entrada_difuminada 700ms linear 1 forwards;
   background-size: cover;
   background-repeat: no-repeat;
