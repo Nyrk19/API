@@ -1,8 +1,7 @@
 import os
 import matplotlib.pyplot as plt
 import math
-from fastapi import APIRouter
-from fastapi import Request
+from fastapi import APIRouter, BackgroundTasks, Request
 from db.models.results import Result
 from db.schemas.results import result_schema
 from db.models.user import User
@@ -12,6 +11,70 @@ from bson import ObjectId
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 
 router = APIRouter(prefix="/resultados")
+
+def procesar_video(correo: str, directorio: str, db_client):
+    try:
+        # Buscar usuario y resultados
+        user = search_user("correo", correo)
+        idUsuario = user.id
+        resultados = calculated_result("id_usuario", idUsuario)
+
+        if not resultados:
+            raise Exception("No se encontraron resultados para este usuario")
+
+        # Verificar si ya existe el video
+        video_path = os.path.join(directorio, f"{idUsuario}.mp4")
+        if os.path.exists(video_path):
+            return {"exito": f"{idUsuario}.mp4", "estado": resultados.Actividad}
+
+        # Recopilar los videos de las carreras
+        videos = []
+        for i in range(1, 6):
+            id_key = f"id_carrera{i}"
+            carrera_id = getattr(resultados, id_key, None)
+            if carrera_id:
+                carrera = db_client.carreras.find_one({"_id": ObjectId(carrera_id)})
+                video = carrera.get("video", " ")
+                video += '.mp4'
+                num = str(i) + ".mp4"
+                videos.append(num)
+                videos.append(video)
+
+        clips = []
+        videos_tiempo = [] 
+        db_client.banda.update_one({"id_usuario": idUsuario}, {"$set": {"status": True}})
+        
+        for i, video in enumerate(videos):
+            video_path = os.path.join(directorio, video)
+            if not os.path.exists(video_path):
+                raise Exception(f"El archivo de video {video} no se encuentra.")
+            clip = VideoFileClip(video_path)
+            if i % 2 == 1:
+                segundos = clip.duration + 3
+                videos_tiempo.append(segundos)
+            clips.append(clip)
+
+        # Almacenar la información de los videos
+        videos_data = {
+            "id_usuario": idUsuario,
+            "video1": videos_tiempo[0],
+            "video2": videos_tiempo[1],
+            "video3": videos_tiempo[2],
+            "video4": videos_tiempo[3],
+            "video5": videos_tiempo[4]
+        }
+
+        db_client.video.insert_one(videos_data)
+
+        # Concatenar los videos
+        final_video = concatenate_videoclips(clips)
+        output_path = os.path.join(directorio, f"{idUsuario}.mp4")
+        final_video.write_videofile(output_path, codec="libx264", threads=4, preset='ultrafast')
+
+        return {"exito": f"{idUsuario}.mp4"}
+
+    except Exception as e:
+        return {"error": f"Ocurrió un error: {str(e)}"}
 
 def search_user(field: str, key):
     try:
@@ -123,64 +186,10 @@ async def get_info(correo: str):
     return {"exito": carreras_info, "descripciones": descripciones}
     
 @router.put("/video")
-async def set_video(correo: str):
-    try:
-        directorio = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static', 'Videos')
-        directorio = os.path.normpath(directorio)
-        
-        user = search_user("correo", correo)
-        idUsuario = user.id
-        resultados = calculated_result("id_usuario", idUsuario)
-        
-        if not resultados:
-            return {"error": "No se encontraron resultados para este usuario"}
-        
-        video_path = os.path.join(directorio, f"{idUsuario}.mp4")
-        if os.path.exists(video_path):
-            return {"exito": f"{idUsuario}.mp4", "estado": resultados.Actividad}
-        
-        videos = []
-        for i in range(1, 6):
-            id_key = f"id_carrera{i}"
-            carrera_id = getattr(resultados, id_key, None)
-            if carrera_id:
-                carrera = db_client.carreras.find_one({"_id": ObjectId(carrera_id)})
-                video = carrera.get("video", " ")
-                video += '.mp4'
-                num = str(i) + ".mp4"
-                videos.append(num)
-                videos.append(video)
-        
-        clips = []
-        videos_tiempo = [] 
-        db_client.banda.update_one({"id_usuario": idUsuario}, {"$set": {"status": True}})
-        for i, video in enumerate(videos):
-            video_path = os.path.join(directorio, video)
-            if not os.path.exists(video_path):
-                return {"error": f"El archivo de video {video} no se encuentra."}
-            clip = VideoFileClip(video_path)
-            if i % 2 == 1:
-                segundos = clip.duration + 3
-                videos_tiempo.append(segundos)
-            clips.append(clip)
-        videos = {
-            "id_usuario": idUsuario,
-            "video1": videos_tiempo[0],
-            "video2": videos_tiempo[1],
-            "video3": videos_tiempo[2],
-            "video4": videos_tiempo[3],
-            "video5": videos_tiempo[4]
-        }
-        db_client.video.insert_one(videos)
-        final_video = concatenate_videoclips(clips)
-        output_path = os.path.join(directorio, f"{idUsuario}.mp4")
-        final_video.write_videofile(output_path, codec="libx264", threads=4, preset='ultrafast')
-        
-        return {"exito": f"{idUsuario}.mp4"}
-    
-    except Exception as e:
-        print("error", e)
-        return {"error": f"Ocurrió un error: {str(e)}"}
+async def set_video(correo: str, background_tasks: BackgroundTasks):
+    directorio = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static', 'Videos')
+    directorio = os.path.normpath(directorio)
+    background_tasks.add_task(procesar_video, correo, directorio, db_client)
 
 @router.post("/")
 async def create_results(result: Result):
