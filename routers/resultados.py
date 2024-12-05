@@ -190,6 +190,7 @@ async def set_video(correo: str, background_tasks: BackgroundTasks):
     directorio = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static', 'Videos')
     directorio = os.path.normpath(directorio)
     background_tasks.add_task(procesar_video, correo, directorio, db_client)
+    return {"exito": f"{idUsuario}.mp4"}
 
 @router.post("/")
 async def create_results(result: Result):
