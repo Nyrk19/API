@@ -7,6 +7,7 @@ from db.client import db_client
 from datetime import datetime, timedelta
 from sklearn.svm import SVC
 import numpy as np
+import asyncio
 
 router = APIRouter(prefix="/banda")
 
@@ -166,7 +167,7 @@ async def procesar_video(correo: str, hora_exacta: datetime, result):
                     }
                 model = SVC()
                 model.load('modelo_svm_atencion.pkl')
-                X = np.array([valores_banda['delta'], valores_banda['theta']])
+                X = np.array([valores_banda['delta'], valores_banda['theta'], valores_banda['lowAlpha'], valores_banda['highAlpha'], valores_banda['lowBeta'], valores_banda['highBeta'], valores_banda['lowGamma'], valores_banda['highGamma']])
                 atencion = model.predict(X)
                 atencion_video.append(atencion)
         videos.append({"video_id": j, "atencion": atencion_video})
@@ -251,7 +252,8 @@ async def svm_test(request: Request, background_tasks: BackgroundTasks):
     result = search_banda("id_usuario", id)
     if type(result) == Banda:
         db_client.banda.update_one({"id_usuario": id}, {"$set": {"status": False}})
-        
+        await asyncio.sleep(10)
+        result = search_banda("id_usuario", id)
         background_tasks.add_task(procesar_test, correo, req_data.get("test"), result)
         
         return {"exito": "Respuestas procesadas"}
@@ -268,8 +270,9 @@ async def svm_video(request: Request, background_tasks: BackgroundTasks):
     id = user.id
     result = search_banda("id_usuario", id)
     if type(result) == Banda:
+        await asyncio.sleep(10)
+        result = search_banda("id_usuario", id)
         background_tasks.add_task(procesar_video, correo, hora_exacta, result)
-        
         return {"exito": "Resultados actualizados"}
     return{"error": "Documento no encontrado"}
 

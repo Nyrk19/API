@@ -93,6 +93,28 @@ h2{
   text-align: center;
 }
 
+#miEmergente {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 15vh;
+  width: 100%; 
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.emergente-contenido {
+    background-color: #fefefe;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 33%;
+}
+
 footer {
   background-color: #333;
   color: #fff;
@@ -114,6 +136,14 @@ footer a {
 .video{
   width: 80vw; 
   animation: entradas 2s linear 1 forwards;
+}
+
+.cerrar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {

@@ -1145,6 +1145,8 @@ async function terminarActividad() {
             });
             data = await response.json();
             ocultarEmergente();
+            abrirEmergente("Se estan procesando sus datos, no cierre esta ventana")
+            setTimeout(ocultarEmergente, 6000);
             window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar';
             
         }
