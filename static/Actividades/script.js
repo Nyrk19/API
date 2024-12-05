@@ -68,7 +68,6 @@ async function verificarAutenticacion() {
                     resK = calcularResultadosK();                    
                     crearBson(resC, resH, resK);
                 }
-                
                 cargarVideo();
             } catch (error) {
                 console.error('Error al cargar respuestas: ', error.message);
@@ -1145,10 +1144,8 @@ async function terminarActividad() {
                 })
             });
             data = await response.json();
-            if (data.exito) {
-                ocultarEmergente();
-                window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar';
-            }
+            ocultarEmergente();
+            window.location.href = 'https://api-2y57.onrender.com/Skillmap/Empezar';
             
         }
     } catch (error) {
