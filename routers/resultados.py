@@ -12,22 +12,8 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips
 
 router = APIRouter(prefix="/resultados")
 
-def procesar_video(correo: str, directorio: str, db_client):
+def procesar_video(correo: str, directorio: str, resultados, idUsuario):
     try:
-        # Buscar usuario y resultados
-        user = search_user("correo", correo)
-        idUsuario = user.id
-        resultados = calculated_result("id_usuario", idUsuario)
-
-        if not resultados:
-            raise Exception("No se encontraron resultados para este usuario")
-
-        # Verificar si ya existe el video
-        video_path = os.path.join(directorio, f"{idUsuario}.mp4")
-        if os.path.exists(video_path):
-            return {"exito": f"{idUsuario}.mp4", "estado": resultados.Actividad}
-
-        # Recopilar los videos de las carreras
         videos = []
         for i in range(1, 6):
             id_key = f"id_carrera{i}"
@@ -70,8 +56,6 @@ def procesar_video(correo: str, directorio: str, db_client):
         final_video = concatenate_videoclips(clips)
         output_path = os.path.join(directorio, f"{idUsuario}.mp4")
         final_video.write_videofile(output_path, codec="libx264", threads=4, preset='ultrafast')
-
-        return {"exito": f"{idUsuario}.mp4"}
 
     except Exception as e:
         return {"error": f"Ocurrió un error: {str(e)}"}
@@ -189,7 +173,16 @@ async def get_info(correo: str):
 async def set_video(correo: str, background_tasks: BackgroundTasks):
     directorio = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static', 'Videos')
     directorio = os.path.normpath(directorio)
-    background_tasks.add_task(procesar_video, correo, directorio, db_client)
+    user = search_user("correo", correo)
+    idUsuario = user.id
+    resultados = calculated_result("id_usuario", idUsuario)    
+    if not resultados:
+        return {"error": "No se encontraron resultados para este usuario"}
+    
+    video_path = os.path.join(directorio, f"{idUsuario}.mp4")
+    if os.path.exists(video_path):
+        return {"exito": f"{idUsuario}.mp4", "estado": resultados.Actividad}
+    background_tasks.add_task(procesar_video, correo, directorio, resultados, idUsuario)
     return {"exito": f"{idUsuario}.mp4"}
 
 @router.post("/")
