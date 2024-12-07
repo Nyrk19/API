@@ -23,7 +23,7 @@ async function verificarAutenticacion() {
                         "1. Acerca de Skillmap<br>" +
                         "2. Acerca de los desarrolladores<br>" +
                         "3. Acerca de mis resultados";
-        messageContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Login/logo.png" class="avatar"></div><div class="message-content">' + mensaje + '</div>';
+        messageContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/LOGIN/Logo.png" class="avatar"></div><div class="message-content">' + mensaje + '</div>';
         document.getElementById('conversation').appendChild(messageContainer);
     }
 
@@ -171,12 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const thinkingContainer = document.createElement('div');
             thinkingContainer.classList.add('message', 'bot');
             scrollToBottom();
-            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Login/logo.png" class="avatar"></div><div class="message-content"><span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span></div>';
+            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/LOGIN/Logo.png" class="avatar"></div><div class="message-content"><span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span></div>';
             document.getElementById('conversation').appendChild(thinkingContainer);
             scrollToBottom();
             const botResponse = await respuesta(ultimaPregunta, ultimaRespuesta);
             setTimeout(() => {
-            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/Login/logo.png" class="avatar"></div><div class="message-content">' + botResponse + '</div>';
+            thinkingContainer.innerHTML = '<div class="avatar-container"><img src="https://api-2y57.onrender.com/static/LOGIN/Logo.png" class="avatar"></div><div class="message-content">' + botResponse + '</div>';
             }, 1000);
             scrollToBottom();
         });

@@ -1103,7 +1103,9 @@ async function cargarVideo () {
                     await new Promise(resolve => setTimeout(resolve, 20000));
                 }
             }
-            ocultarEmergente();
+            setTimeout(function() {
+                ocultarEmergente();
+            }, 5000);
             
             if (!estado){
                 videoElement.addEventListener('ended', function() {
