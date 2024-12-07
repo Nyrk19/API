@@ -192,7 +192,7 @@ async function registerUser() {
                                         times: [],
                                         status: false
                                     };
-                                    
+                                    mail(email);
                                     fetch("https://api-2y57.onrender.com/banda", {
                                         method: 'POST',
                                         headers: {
@@ -205,7 +205,6 @@ async function registerUser() {
                                         showCustomPopup(data.error,2000,"#ec5353")
                                     }else {                                   
                                         showCustomPopup("Usuario creado",2000,"#12a14b")
-                                        mail(email);
                                     }
                                 }
                             } catch (error) {
