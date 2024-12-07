@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('http://127.0.0.1:8000/static/Registro/fondo.webp');
+  background-image: url('https://api-2y57.onrender.com/static/Registro/fondo.webp');
   background-size: cover; 
   background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
