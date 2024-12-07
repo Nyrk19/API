@@ -143,7 +143,7 @@ if (verificarRespuestasPaginaActual()) {
     let formLleno = true
     try {
         correo = info.correo
-        const response = await fetch(`https://api-2y57.onrender.com/answersK?correo=${encodeURIComponent(correo)}&formulario=false`, {
+        const response = await fetch(`https://api-2y57.onrender.com/answersK?correo=${encodeURIComponent(correo)}&formulario=true`, {
             method: 'GET',
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
