@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
-  background-image: url('http://127.0.0.1:8000/static/Registro/fondo.webp');
+  background-image: url('https://api-2y57.onrender.com/static/Registro/fondo.webp');
   display: flex;
   justify-content: center;
   align-items: center;
