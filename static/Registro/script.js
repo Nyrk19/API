@@ -72,7 +72,7 @@ async function registerUser() {
     const lastName = document.getElementById('last-name').value;
     const email = document.getElementById('email').value;
     const newPassword = document.getElementById('new-password').value;
-    const userData = {
+    const user = {
         name: firstName,
         surname: lastName,
         correo: email,
@@ -123,14 +123,14 @@ async function registerUser() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(userData),
+            body: JSON.stringify(user),
         });
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const data = await response.json();
+        let data = await response.json();
         if (data.error){
             showCustomPopup(data.error,2000,"#ec5353")
         }else{
@@ -145,7 +145,7 @@ async function registerUser() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                const data = await response.json();
+                data = await response.json();
                 if (data.error){
                     showCustomPopup(data.error,2000,"#ec5353")
                 }else{
@@ -160,7 +160,7 @@ async function registerUser() {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
                         }
-                        const data = await response.json();
+                        data = await response.json();
                         if (data.error){
                             showCustomPopup(data.error,2000,"#ec5353")
                         }else{
@@ -175,7 +175,7 @@ async function registerUser() {
                                 if (!response.ok) {
                                     throw new Error(`HTTP error! Status: ${response.status}`);
                                 }
-                                const data = await response.json();
+                                data = await response.json();
                                 if (data.error){
                                     showCustomPopup(data.error,2000,"#ec5353")
                                 }else{
