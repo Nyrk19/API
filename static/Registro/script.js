@@ -200,11 +200,12 @@ async function registerUser() {
                                         },
                                         body: JSON.stringify(bandaData)
                                     })
-                                    const data = await response.json();
+                                    data = await response.json();
                                     if (data.error){
                                         showCustomPopup(data.error,2000,"#ec5353")
                                     }else {                                   
                                         showCustomPopup("Usuario creado",2000,"#12a14b")
+                                        window.location.href = "https://api-2y57.onrender.com/Skillmap/Autenticar";
                                     }
                                 }
                             } catch (error) {
@@ -238,7 +239,6 @@ async function mail(correo) {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        window.location.href = "https://api-2y57.onrender.com/Skillmap/Autenticar";
 
     } catch (error) {
         console.error('Error during registration:', error);
