@@ -261,7 +261,7 @@ async function enviarFormulario() {
 if (verificarRespuestasPaginaActual()) {
     let formLleno = true
     try {
-    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=true`, {
+    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
         method: 'GET',
         headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function verificarFormularioH() {
 try {
-    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=false`, {
+    const response = await fetch(`https://api-2y57.onrender.com/answersH?correo=${encodeURIComponent(info.correo)}&formulario=true`, {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
