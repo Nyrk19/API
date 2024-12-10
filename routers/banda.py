@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from sklearn.svm import SVC
 import numpy as np
 import asyncio
+import os
 
 router = APIRouter(prefix="/banda")
 
@@ -21,6 +22,8 @@ def search_banda(field: str, key):
 def procesar_test(correo: str, test: str, result):
     verdades = []
     tiempos_banda = result.times
+    directorio = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'modelo_svm_test.pkl')
+    directorio = os.path.normpath(directorio)
     
     #CHASIDE
     if test == "C":
@@ -47,7 +50,7 @@ def procesar_test(correo: str, test: str, result):
                             "highGamma": result.highGamma[i],
                         }
                     model = SVC()
-                    model.load('modelo_svm_test.pkl')
+                    model.load(directorio)
                     X = np.array([valores_banda['delta'], valores_banda['theta'], valores_banda['lowAlpha'], valores_banda['highAlpha'], valores_banda['lowBeta'], valores_banda['highBeta'], valores_banda['lowGamma'], valores_banda['highGamma']])
                     verdad = model.predict(X)
                     verdades.append(verdad)
@@ -63,7 +66,7 @@ def procesar_test(correo: str, test: str, result):
                 valor = not valor
                 db_client.answersC.update_one({"user_email": correo},{"$set": {campo: valor}})
         
-    #KUDER   
+    #KUDER
     if test == "K":
         testK = db_client.answersK.find_one({"user_email": correo})
         tiempos = [f"res{i}_time" for i in range(1, 99)]
@@ -84,7 +87,7 @@ def procesar_test(correo: str, test: str, result):
                             "highGamma": result.highGamma[i],
                         }
                     model = SVC()
-                    model.load('modelo_svm_test.pkl')
+                    model.load(directorio)
                     X = np.array([valores_banda['delta'], valores_banda['theta'], valores_banda['lowAlpha'], valores_banda['highAlpha'], valores_banda['lowBeta'], valores_banda['highBeta'], valores_banda['lowGamma'], valores_banda['highGamma']])
                     verdad = model.predict(X)
                     verdades.append(verdad)
@@ -124,7 +127,7 @@ def procesar_test(correo: str, test: str, result):
                             "highGamma": result.highGamma[i],
                         }
                     model = SVC()
-                    model.load('modelo_svm_atencion.test')
+                    model.load(directorio)
                     X = np.array([valores_banda['delta'], valores_banda['theta'], valores_banda['lowAlpha'], valores_banda['highAlpha'], valores_banda['lowBeta'], valores_banda['highBeta'], valores_banda['lowGamma'], valores_banda['highGamma']])
                     verdad = model.predict(X)
                     verdades.append(verdad)
@@ -148,6 +151,8 @@ async def procesar_video(correo: str, hora_exacta: datetime, result):
     video = db_client.video.find_one({"id_usuario": id})
     tiempos = [f"video{i}" for i in range(1, 6)]
     videos = []
+    directorio = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'modelo_svm_atencion.pkl')
+    directorio = os.path.normpath(directorio)
     for j, tiempo in enumerate(tiempos):
         tiempo_video = video.get(tiempo)
         atencion_video = []
@@ -166,7 +171,7 @@ async def procesar_video(correo: str, hora_exacta: datetime, result):
                         "highGamma": result.highGamma[i],
                     }
                 model = SVC()
-                model.load('modelo_svm_atencion.pkl')
+                model.load(directorio)
                 X = np.array([valores_banda['delta'], valores_banda['theta'], valores_banda['lowAlpha'], valores_banda['highAlpha'], valores_banda['lowBeta'], valores_banda['highBeta'], valores_banda['lowGamma'], valores_banda['highGamma']])
                 atencion = model.predict(X)
                 atencion_video.append(atencion)
